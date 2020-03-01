@@ -1,0 +1,36 @@
+<form [formGroup]="userForm" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Username</mat-label>
+    <input
+      matInput
+      placeholder="username"
+      type="text"
+      [(ngModel)]="username"
+      value="{{ username }}"
+      formControlName="username"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email:</mat-label>
+    <input
+      matInput
+      formControlName="email"
+      placeholder="email"
+      type="text"
+      value=""
+      name="email"
+    />
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <mat-label>Password:</mat-label>
+    <input
+      matInput
+      placeholder="password"
+      type="password"
+      value=""
+      formControlName="password"
+    />
+  </mat-form-field>
+  <button mat-button (click)="registerUser()">Submit</button>
+</form>

@@ -1,0 +1,18 @@
+<div class="app">
+  <mat-toolbar color="primary" class="navbar">
+    <div>{{ title }}</div>
+    <div>
+      <span><a mat-button routerLink="/">Home</a></span>
+      <span><a mat-button routerLink="/register">Register</a></span>
+      <span><a mat-button routerLink="/login">Login</a></span>
+    </div>
+  </mat-toolbar>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer>
+    <a href="https://www.ganatan.com/">&copy; 2020 - www.ganatan.com</a>
+  </footer>
+</div>
