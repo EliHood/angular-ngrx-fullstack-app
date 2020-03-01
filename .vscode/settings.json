@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "eslint.debug": true,
+    "eslint.format.enable": true,
+    "editor.formatOnSave": true,
+    "git.ignoreLimitWarning": true
+  }
+  
