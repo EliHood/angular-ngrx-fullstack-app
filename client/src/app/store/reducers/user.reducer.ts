@@ -24,6 +24,15 @@ export function userReducer(
     case AuthTypes.REGISTER_FAILURE:
       console.log(action);
       return { ...state };
+    case AuthTypes.INIT_LOGIN:
+      console.log(action);
+      return { ...state };
+    case AuthTypes.LOGIN_SUCCESS:
+      console.log(action);
+      return;
+    case AuthTypes.LOGIN_FAILURE:
+      console.log(action);
+      return;
     default:
       return state;
   }

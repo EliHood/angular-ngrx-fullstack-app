@@ -15,6 +15,7 @@ export class RegisterFormComponent implements OnInit, DoCheck {
   username: string;
   email: string;
   password: string;
+  error: string;
   user: Observable<any>;
   isAuthenticated: Observable<boolean>;
   constructor(private store: Store<State>) {}
@@ -34,10 +35,12 @@ export class RegisterFormComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     if (
       this.userForm.value && this.userForm.value.username
-        ? this.userForm.value.username.length > 6
+        ? this.userForm.value.username.length < 6
         : null
     ) {
-      console.log("this is a validation");
+      this.error = "Username must be at least 6 chars";
+    } else {
+      this.error = "";
     }
   }
   registerUser(): void {

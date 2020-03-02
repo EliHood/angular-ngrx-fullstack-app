@@ -14,4 +14,25 @@ export class registerFailure implements Action {
   constructor(public payload: any) {}
 }
 
-export type UserActions = initRegister | registerSuccess | registerFailure;
+export class initLogin implements Action {
+  public readonly type = types.INIT_LOGIN;
+  constructor(public payload: object) {}
+}
+
+export class loginSuccess implements Action {
+  public readonly type = types.LOGIN_SUCCESS;
+  constructor(public payload: any) {}
+}
+
+export class loginFailure implements Action {
+  public readonly type = types.LOGIN_FAILURE;
+  constructor(public payload: any) {}
+}
+
+export type UserActions =
+  | initRegister
+  | registerSuccess
+  | registerFailure
+  | initLogin
+  | loginSuccess
+  | loginFailure;

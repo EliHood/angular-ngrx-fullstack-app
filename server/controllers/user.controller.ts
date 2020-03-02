@@ -37,7 +37,7 @@ export default {
             jwt.verify(token, process.env.SECRET_KEY, function(err, data) {
               console.log(err, data);
             });
-            res.status(200).send({
+            res.status(200).json({
               auth: true,
               token: token,
               message: "user found & logged in"
@@ -82,7 +82,7 @@ export default {
             console.log("user created in db");
             res
               .status(200)
-              .send({ message: "user created", token: token, auth: true });
+              .json({ message: "user created", token: token, auth: true });
           });
         });
       }

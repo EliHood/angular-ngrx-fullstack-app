@@ -14,6 +14,9 @@ export class AuthService {
     return this.http.get(this.url + "getUsers").pipe(map(res => res.json()));
   };
 
+  login = (user): Observable<any> => {
+    return this.http.post(this.url + "login", user);
+  };
   register = (user): Observable<any> => {
     return this.http.post(this.url + "register", user);
   };

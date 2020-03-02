@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<h1>Login</h1>
 <form [formGroup]="userForm" class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>Username</mat-label>
@@ -13,17 +13,6 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <mat-label>Email</mat-label>
-    <input
-      matInput
-      formControlName="email"
-      placeholder="email"
-      type="text"
-      value=""
-      name="email"
-    />
-  </mat-form-field>
-  <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
     <input
       matInput
@@ -33,5 +22,5 @@
       formControlName="password"
     />
   </mat-form-field>
-  <button mat-button (click)="registerUser()">Submit</button>
+  <button mat-button (click)="loginUser()">Submit</button>
 </form>
