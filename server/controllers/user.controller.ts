@@ -48,7 +48,12 @@ export default {
       }
     })(req, res, next);
   },
-
+  logout: async (req: any, res: Response) => {
+    req.logout();
+    res.status(200).send({
+      message: "User has logged out"
+    });
+  },
   register: async (req: any, res: Response, next: NextFunction) => {
     passport.authenticate("register", (err, user, info) => {
       if (err) {

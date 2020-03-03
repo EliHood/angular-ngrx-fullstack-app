@@ -29,10 +29,27 @@ export class loginFailure implements Action {
   constructor(public payload: any) {}
 }
 
+export class initLogout implements Action {
+  public readonly type = types.INIT_LOGOUT;
+}
+
+export class logoutSuccess implements Action {
+  public readonly type = types.LOGOUT_SUCCESS;
+  constructor(public payload: any) {}
+}
+
+export class logoutFailure implements Action {
+  public readonly type = types.LOGOUT_FAILURE;
+  constructor(public payload: any) {}
+}
+
 export type UserActions =
   | initRegister
   | registerSuccess
   | registerFailure
   | initLogin
   | loginSuccess
-  | loginFailure;
+  | loginFailure
+  | initLogout
+  | logoutSuccess
+  | logoutFailure;

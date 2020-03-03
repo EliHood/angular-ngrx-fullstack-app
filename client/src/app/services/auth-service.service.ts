@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post(this.url + "register", user);
   };
 
+  logout = (): Observable<any> => {
+    return this.http.get(this.url + "logout").pipe(map(res => res.json()));
+  };
+
   isLoggedIn() {
     return localStorage.getItem("auth");
   }

@@ -33,6 +33,12 @@ export function userReducer(
     case AuthTypes.LOGIN_FAILURE:
       console.log(action);
       return;
+    case AuthTypes.LOGOUT_SUCCESS:
+      console.log(action);
+      return;
+    case AuthTypes.LOGOUT_FAILURE:
+      console.log(action);
+      return;
     default:
       return state;
   }

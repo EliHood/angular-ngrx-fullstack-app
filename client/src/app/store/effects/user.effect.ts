@@ -44,4 +44,19 @@ export class AuthEffect {
       );
     })
   );
+  @Effect()
+  logoutUser: Observable<Action> = this.actions$.pipe(
+    ofType(AuthTypes.INIT_LOGOUT),
+    mergeMap(payload => {
+      console.log(payload);
+      return this.authService.logout().pipe(
+        map(response => new AuthAction.logoutSuccess(response)),
+        tap(resp => {
+          localStorage.removeItem("auth");
+          this.router.navigate(["/login"]);
+        }),
+        catchError(error => of(new AuthAction.logoutFailure(error)))
+      );
+    })
+  );
 }
