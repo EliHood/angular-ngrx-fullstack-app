@@ -13,6 +13,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { EffectsModule } from "@ngrx/effects";
 import { AuthEffect } from "./store/effects/user.effect";
 import { appReducers } from "./store/reducers";
+import { AuthGuard } from "./auth.guard";
 import { RegisterFormComponent } from "./components/forms/register-form/register-form.component";
 import { LoginFormComponent } from "./components/forms/login-form/login-form.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";

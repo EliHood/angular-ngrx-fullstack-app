@@ -10,7 +10,7 @@ import { AuthService } from "./services/auth-service.service";
 export class AppComponent implements OnInit {
   title = "Routing Test";
 
-  constructor() {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
     console.log("hello");

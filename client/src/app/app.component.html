@@ -3,8 +3,15 @@
     <div>{{ title }}</div>
     <div>
       <span><a mat-button routerLink="/">Home</a></span>
-      <span><a mat-button routerLink="/register">Register</a></span>
-      <span><a mat-button routerLink="/login">Login</a></span>
+      <span *ngIf="authService.isLoggedIn()"
+        ><a mat-button routerLink="/dashboard">Dashboard</a></span
+      >
+      <span *ngIf="!authService.isLoggedIn()"
+        ><a mat-button routerLink="/register">Register</a></span
+      >
+      <span *ngIf="!authService.isLoggedIn()"
+        ><a mat-button routerLink="/login">Login</a></span
+      >
     </div>
   </mat-toolbar>
 

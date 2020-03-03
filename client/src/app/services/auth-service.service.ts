@@ -20,4 +20,8 @@ export class AuthService {
   register = (user): Observable<any> => {
     return this.http.post(this.url + "register", user);
   };
+
+  isLoggedIn() {
+    return localStorage.getItem("auth");
+  }
 }
