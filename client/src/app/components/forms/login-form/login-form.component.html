@@ -21,7 +21,13 @@
       formControlName="password"
     />
   </mat-form-field>
-  <button mat-stroked-button color="primary" (click)="loginUser()">
+  <button
+    [class.spinner]="loading"
+    mat-stroked-button
+    color="primary"
+    (click)="loginUser()"
+    [disabled]="loading"
+  >
     Login
   </button>
 </form>

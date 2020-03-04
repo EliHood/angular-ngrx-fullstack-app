@@ -4,11 +4,13 @@ import { error } from "@angular/compiler/src/util";
 export interface UserState {
   isAuthenticated: boolean;
   error?: string;
+  loading: boolean;
 }
 
 export const INITIAL_STATE: UserState = {
   isAuthenticated: false,
-  error: ""
+  error: "",
+  loading: false
 };
 
 export function userReducer(
@@ -27,18 +29,20 @@ export function userReducer(
       return { ...state };
     case AuthTypes.INIT_LOGIN:
       console.log(action);
-      return { ...state, error: "" };
+      return { ...state, loading: true, error: "" };
     case AuthTypes.LOGIN_SUCCESS:
       console.log(action);
       return {
         ...state,
-        error: ""
+        error: "",
+        loading: true
       };
     case AuthTypes.LOGIN_FAILURE:
       console.log(action);
       return {
         ...state,
-        error: action.payload.message
+        error: action.payload.message,
+        loading: false
       };
     case AuthTypes.LOGOUT_SUCCESS:
       console.log(action);

@@ -19,3 +19,8 @@ export const loginError = createSelector(
   userFeature,
   (state: UserState) => state.error
 );
+
+export const isLoading = createSelector(
+  userFeature,
+  (state: UserState) => state.loading
+);

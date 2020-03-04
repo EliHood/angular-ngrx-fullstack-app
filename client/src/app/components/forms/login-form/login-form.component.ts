@@ -2,7 +2,7 @@ import { Component, OnInit, DoCheck, OnDestroy } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { initLogin } from "../../../store/actions/auth.actions";
 import { Store, select } from "@ngrx/store";
-import { State, loginError } from "../../../store/reducers";
+import { State, loginError, isLoading } from "../../../store/reducers";
 import { Observable, Subscription, from } from "rxjs";
 
 @Component({
@@ -18,7 +18,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   error: string;
   isAuthenticated: Observable<boolean>;
   userSubscription: Subscription;
-
+  loadingSubscription: Subscription;
+  loadingSub: Observable<any>;
+  loading: boolean;
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
@@ -37,9 +39,14 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     };
     console.log(post);
     this.userSubscription = this.user.subscribe(err => {
+      console.log(err);
       this.error = err;
     });
-
+    this.loadingSub = this.store.pipe(select(isLoading));
+    this.loadingSubscription = this.loadingSub.subscribe(load => {
+      console.log(load);
+      this.loading = load;
+    });
     this.store.dispatch(new initLogin(post));
   }
   ngOnDestroy(): void {
