@@ -1,7 +1,10 @@
 import dotenv from "dotenv";
 import session from "express-session";
+import mongoose from "mongoose";
 
+const MongooseStore = require("express-mongoose-store")(session, mongoose);
 export interface sessionInterface {
+  store: object;
   secret: string;
   resave: boolean;
   saveUninitialized: boolean;
@@ -9,6 +12,7 @@ export interface sessionInterface {
 }
 
 const sessionConfig: sessionInterface = {
+  store: new MongooseStore({ ttl: 600000 }),
   secret: "nodeauth",
   resave: false,
   saveUninitialized: false,
