@@ -40,7 +40,7 @@ export class AuthEffect {
           localStorage.setItem("auth", resp.payload.token);
           this.router.navigate(["/dashboard"]);
         }),
-        catchError(error => of(new AuthAction.loginFailure(error)))
+        catchError(error => of(new AuthAction.loginFailure(error.json())))
       );
     })
   );
@@ -53,7 +53,7 @@ export class AuthEffect {
         map(response => new AuthAction.logoutSuccess(response)),
         tap(resp => {
           localStorage.removeItem("auth");
-          this.router.navigate(["/login"]);
+          window.location.href = "/login";
         }),
         catchError(error => of(new AuthAction.logoutFailure(error)))
       );

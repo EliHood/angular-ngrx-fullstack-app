@@ -20,16 +20,14 @@ export class RegisterFormComponent implements OnInit, DoCheck {
   isAuthenticated: Observable<boolean>;
   constructor(private store: Store<State>) {}
   ngOnInit(): void {
-    this.user = this.store.pipe(select(selectUser));
+    // this.user = this.store.pipe(select(selectUser));
     this.userForm = new FormGroup({
       username: new FormControl(""),
       email: new FormControl(""),
       password: new FormControl("")
     });
-    this.user.subscribe(post => {
-      this.isAuthenticated = post.isAuthenticated;
-    });
-    console.log(this.isAuthenticated);
+
+    // console.log(this.isAuthenticated);
   }
   // can handle validations
   ngDoCheck(): void {

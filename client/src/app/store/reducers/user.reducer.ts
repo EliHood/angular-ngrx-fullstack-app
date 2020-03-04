@@ -1,5 +1,6 @@
 import { User } from "../../models/user";
 import * as AuthTypes from "../types/auth.types";
+import { error } from "@angular/compiler/src/util";
 export interface UserState {
   isAuthenticated: boolean;
   error?: string;
@@ -26,13 +27,19 @@ export function userReducer(
       return { ...state };
     case AuthTypes.INIT_LOGIN:
       console.log(action);
-      return { ...state };
+      return { ...state, error: "" };
     case AuthTypes.LOGIN_SUCCESS:
       console.log(action);
-      return;
+      return {
+        ...state,
+        error: ""
+      };
     case AuthTypes.LOGIN_FAILURE:
       console.log(action);
-      return;
+      return {
+        ...state,
+        error: action.payload.message
+      };
     case AuthTypes.LOGOUT_SUCCESS:
       console.log(action);
       return;

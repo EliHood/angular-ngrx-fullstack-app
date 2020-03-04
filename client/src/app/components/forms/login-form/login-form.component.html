@@ -1,4 +1,5 @@
 <h1>Login</h1>
+<h3 class="err" *ngIf="error">{{ error }}</h3>
 <form [formGroup]="userForm" class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>Username</mat-label>
@@ -6,12 +7,10 @@
       matInput
       placeholder="username"
       type="text"
-      [(ngModel)]="username"
       value="{{ username }}"
       formControlName="username"
     />
   </mat-form-field>
-
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
     <input
@@ -22,5 +21,7 @@
       formControlName="password"
     />
   </mat-form-field>
-  <button mat-button (click)="loginUser()">Submit</button>
+  <button mat-stroked-button color="primary" (click)="loginUser()">
+    Login
+  </button>
 </form>

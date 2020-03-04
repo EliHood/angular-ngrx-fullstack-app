@@ -14,3 +14,8 @@ export const selectUser = createSelector(
   userFeature,
   (state: UserState) => state
 );
+
+export const loginError = createSelector(
+  userFeature,
+  (state: UserState) => state.error
+);
