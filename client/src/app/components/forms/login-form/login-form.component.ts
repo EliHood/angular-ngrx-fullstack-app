@@ -3,20 +3,21 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { initLogin } from "../../../store/actions/auth.actions";
 import { Store, select } from "@ngrx/store";
 import { State, loginError } from "../../../store/reducers";
-import { Observable, from } from "rxjs";
+import { Observable, Subscription, from } from "rxjs";
 
 @Component({
   selector: "app-login-form",
   templateUrl: "./login-form.component.html",
   styleUrls: ["./login-form.component.css"]
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
   username: string;
   password: string;
   user: Observable<any>;
-  error: Observable<any>;
+  error: string;
   isAuthenticated: Observable<boolean>;
+  userSubscription: Subscription;
 
   constructor(private store: Store<State>) {}
 
@@ -35,9 +36,14 @@ export class LoginFormComponent implements OnInit {
       password: raw.password
     };
     console.log(post);
-    this.user.subscribe(err => {
+    this.userSubscription = this.user.subscribe(err => {
       this.error = err;
     });
+
     this.store.dispatch(new initLogin(post));
+  }
+  ngOnDestroy(): void {
+    console.log("this worked");
+    this.userSubscription.unsubscribe();
   }
 }
