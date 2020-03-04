@@ -38,7 +38,7 @@ export class AuthEffect {
         map(response => new AuthAction.loginSuccess(response.json())),
         tap(resp => {
           localStorage.setItem("auth", resp.payload.token);
-          this.router.navigate(["/dashboard"]);
+          window.location.href = "/dashboard";
         }),
         catchError(error => of(new AuthAction.loginFailure(error.json())))
       );
