@@ -52,5 +52,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     console.log("this worked");
     this.userSubscription.unsubscribe();
+    this.loadingSubscription.unsubscribe();
   }
 }
