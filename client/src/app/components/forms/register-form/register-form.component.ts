@@ -1,22 +1,26 @@
-import { Component, OnInit, DoCheck } from "@angular/core";
+import { Component, OnInit, DoCheck, OnDestroy } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { initRegister } from "../../../store/actions/auth.actions";
+import {
+  initRegister,
+  resetRegister
+} from "../../../store/actions/auth.actions";
 import { Store, select } from "@ngrx/store";
-import { State, selectUser } from "../../../store/reducers";
-import { Observable, from } from "rxjs";
+import { State, registerError, isLoading } from "../../../store/reducers";
+import { Observable, from, Subscription } from "rxjs";
 
 @Component({
   selector: "app-register-form",
   templateUrl: "./register-form.component.html",
   styleUrls: ["./register-form.component.css"]
 })
-export class RegisterFormComponent implements OnInit, DoCheck {
+export class RegisterFormComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
   username: string;
   email: string;
   password: string;
   error: string;
   user: Observable<any>;
+  userSubscription: Subscription;
   isAuthenticated: Observable<boolean>;
   constructor(private store: Store<State>) {}
   ngOnInit(): void {
@@ -27,20 +31,13 @@ export class RegisterFormComponent implements OnInit, DoCheck {
       password: new FormControl("")
     });
 
-    // console.log(this.isAuthenticated);
+    this.user = this.store.pipe(select(registerError));
+    this.userSubscription = this.user.subscribe(err => {
+      console.log(err);
+      this.error = err;
+    });
   }
-  // can handle validations
-  ngDoCheck(): void {
-    if (
-      this.userForm.value && this.userForm.value.username
-        ? this.userForm.value.username.length < 6
-        : null
-    ) {
-      this.error = "Username must be at least 6 chars";
-    } else {
-      this.error = "";
-    }
-  }
+
   registerUser(): void {
     const raw = this.userForm.getRawValue();
     let post = {
@@ -49,6 +46,12 @@ export class RegisterFormComponent implements OnInit, DoCheck {
       email: raw.email
     };
     console.log(post);
+
     this.store.dispatch(new initRegister(post));
+    console.log(this.error);
+  }
+  ngOnDestroy(): void {
+    this.userSubscription.unsubscribe();
+    this.store.dispatch(new resetRegister());
   }
 }

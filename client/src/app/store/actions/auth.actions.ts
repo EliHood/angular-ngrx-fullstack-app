@@ -43,8 +43,17 @@ export class logoutFailure implements Action {
   constructor(public payload: any) {}
 }
 
+export class resetLogin implements Action {
+  public readonly type = types.RESET_LOGIN;
+}
+
+export class resetRegister implements Action {
+  public readonly type = types.RESET_REGISTER;
+}
+
 export type UserActions =
   | initRegister
+  | resetRegister
   | registerSuccess
   | registerFailure
   | initLogin
@@ -52,4 +61,5 @@ export type UserActions =
   | loginFailure
   | initLogout
   | logoutSuccess
+  | resetLogin
   | logoutFailure;

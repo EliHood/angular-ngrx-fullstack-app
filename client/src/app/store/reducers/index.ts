@@ -24,3 +24,7 @@ export const isLoading = createSelector(
   userFeature,
   (state: UserState) => state.loading
 );
+export const registerError = createSelector(
+  userFeature,
+  (state: UserState) => state.error
+);

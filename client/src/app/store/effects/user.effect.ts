@@ -24,7 +24,7 @@ export class AuthEffect {
       return this.authService.register(payload).pipe(
         map(response => new AuthAction.registerSuccess(response)),
         tap(() => this.router.navigate(["/dashboard"])),
-        catchError(error => of(new AuthAction.registerFailure(error)))
+        catchError(error => of(new AuthAction.registerFailure(error.json())))
       );
     })
   );

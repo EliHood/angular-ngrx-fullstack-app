@@ -26,7 +26,7 @@ export function userReducer(
       return { ...state };
     case AuthTypes.REGISTER_FAILURE:
       console.log(action);
-      return { ...state };
+      return { ...state, error: action.payload.message };
     case AuthTypes.INIT_LOGIN:
       console.log(action);
       return { ...state, loading: true, error: "" };
@@ -36,6 +36,16 @@ export function userReducer(
         ...state,
         error: "",
         loading: true
+      };
+    case AuthTypes.RESET_LOGIN:
+      return {
+        ...state,
+        error: ""
+      };
+    case AuthTypes.RESET_REGISTER:
+      return {
+        ...state,
+        error: ""
       };
     case AuthTypes.LOGIN_FAILURE:
       console.log(action);
