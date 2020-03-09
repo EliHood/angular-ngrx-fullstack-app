@@ -10,12 +10,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
-    min: [6]
+    minlength: 6
   },
   password: {
     type: String,
     required: true,
-    min: [6]
+    minlength: 6
   },
   createdAt: { type: Date, default: Date.now() }
 });

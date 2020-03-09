@@ -25,6 +25,16 @@ passport.use(
             message: `username: ${req.body.username} already taken`
           });
         }
+        if (req.body.username.length < 6) {
+          return done(null, false, {
+            message: "username must be at least 6 chars"
+          });
+        }
+        if (password.length < 6) {
+          return done(null, false, {
+            message: "password must be at least 6 chars"
+          });
+        }
         await db.User.findOne({
           email: req.body.email
         }).then(async user => {
